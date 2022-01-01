@@ -1,3 +1,38 @@
+:root {
+  --main-bg-color: #72797A;
+  --text-color: #000000;
+  --border-color: #808080;
+  --link-color: #19c;
+  --icon-bg-color: #72797A;
+  --icon-bg-color-hover: #2B3C45;
+  --input-color: #B2B2B2;
+}
+
+.container {
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+}
+
+/* .container {
+  color: var(--blue);
+  background-color: var(--white);
+  font-size: var(--fontsize);
+} */
+
+.bg-color {
+  background-color: var(--text-color) !important;
+}
+
+.text-color {
+  color: var(--text-color) !important;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +70,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+svg {
+  margin-bottom: 3px;
+}
+
+#search {
+  width: 470px;
 }
