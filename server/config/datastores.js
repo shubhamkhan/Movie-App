@@ -50,7 +50,8 @@ module.exports.datastores = {
     ***************************************************************************/
     // adapter: 'sails-mysql',
     // url: 'mysql://user:password@host:port/database',
-
+    adapter: 'sails-mongo',
+    url: 'mongodb+srv://admin:admin123@cinemy.rkyum.mongodb.net/cinemy_db?retryWrites=true&w=majority'
   },
 
 
