@@ -1,8 +1,9 @@
 :root {
-  --main-bg-color: #72797A;
-  --text-color: #000000;
-  --border-color: #808080;
+  --bg-primary: #72797A;
+  --text-primary: #000000;
+  --text-secondary: #FFFFFF;
   --link-color: #19c;
+  --border-color: #808080;
   --icon-bg-color: #72797A;
   --icon-bg-color-hover: #2B3C45;
   --input-color: #B2B2B2;
@@ -21,12 +22,16 @@
   font-size: var(--fontsize);
 } */
 
-.bg-color {
-  background-color: var(--text-color) !important;
+.bg-primary {
+  background-color: var(--bg-primary) !important;
 }
 
-.text-color {
-  color: var(--text-color) !important;
+.text-primary {
+  color: var(--text-primary) !important;
+}
+
+.text-secondary {
+  color: var(--text-secondary) !important;
 }
 
 a:link, a:visited {

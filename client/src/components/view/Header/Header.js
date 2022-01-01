@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
-        <nav className="bg-color border-bottom text-white">
+        <nav className="border-bottom text-white bg-dark">
             <div className="container d-flex flex-wrap">
                 <p className="navbar-brand mt-2">
                     <img src={logo} alt="" width="32" height="32" className="pt-1 d-inline-block align-text-top"/> {configDB.APP_NAME}

@@ -12,7 +12,7 @@
  * For more information on configuring datastores, check out:
  * https://sailsjs.com/config/datastores
  */
-
+ require('dotenv').config();
 module.exports.datastores = {
 
 
@@ -31,7 +31,6 @@ module.exports.datastores = {
   * (For production configuration, see `config/env/production.js`.)          *
   *                                                                          *
   ***************************************************************************/
-
   default: {
 
     /***************************************************************************
@@ -51,7 +50,7 @@ module.exports.datastores = {
     // adapter: 'sails-mysql',
     // url: 'mysql://user:password@host:port/database',
     adapter: 'sails-mongo',
-    url: 'mongodb+srv://admin:admin123@cinemy.rkyum.mongodb.net/cinemy_db?retryWrites=true&w=majority'
+    url: 'mongodb+srv://'+process.env.DB_ADMIN+':'+process.env.DB_PASSWORD+'@'+process.env.DB_SERVER+'/'+process.env.DB_NAME+'?retryWrites=true&w=majority'
   },
 
 
