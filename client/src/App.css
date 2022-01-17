@@ -1,12 +1,24 @@
 :root {
-  --bg-primary: #72797A;
-  --text-primary: #000000;
-  --text-secondary: #FFFFFF;
-  --link-color: #19c;
+  --bg-color-primary: #0d47a1;
+  --bg-color-secondary: #161C20;
+  --text-color-primary: #000000;
+  --text-color-secondary: #FFFFFF;
+  --link-color: #3976DC;
+
   --border-color: #808080;
   --icon-bg-color: #72797A;
   --icon-bg-color-hover: #2B3C45;
   --input-color: #B2B2B2;
+}
+
+.bg-color {
+  darkcolor: #161C20;
+  asscolor: #F3F3F3;
+  lightasscolor: #929292;
+  whitecolor: #FFFFFF;
+  textlinkcolor: #3976DC;
+  darktextcolor: #2A2C32;
+  bg: #181818
 }
 
 .container {
@@ -14,28 +26,6 @@
   --font-size-sm: 14px;
   --font-size-md: 16px;
   --font-size-lg: 18px;
-}
-
-/* .container {
-  color: var(--blue);
-  background-color: var(--white);
-  font-size: var(--fontsize);
-} */
-
-.bg-primary {
-  background-color: var(--bg-primary) !important;
-}
-
-.text-primary {
-  color: var(--text-primary) !important;
-}
-
-.text-secondary {
-  color: var(--text-secondary) !important;
-}
-
-a:link, a:visited {
-  text-decoration: none;
 }
 
 .App {
@@ -79,6 +69,38 @@ a:link, a:visited {
 
 svg {
   margin-bottom: 3px;
+}
+
+/* Custum Theme class [START] */
+.app-bg-primary {
+  background-color: var(--bg-color-primary) !important;
+}
+.app-bg-secondary {
+  background-color: var(--bg-color-secondary) !important;
+}
+
+.app-text-primary {
+  color: var(--text-color-primary) !important;
+}
+
+.app-text-secondary {
+  color: var(--text-color-secondary) !important;
+}
+
+.app-link-color {
+  color: var(--link-color);
+}
+
+/* Custum Theme class [END] */
+
+input:focus, button:focus {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow:none !important;
+}
+
+a:link, a:visited {
+  text-decoration: none;
 }
 
 #search {
