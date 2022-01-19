@@ -53,9 +53,9 @@ const Row = ({title, fetchUrl, isLargeRow, id}) => {
                                 className={`row__poster ${isLargeRow && "row__posterLarge"}`} 
                                 src={`${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path}`} 
                                 loading="lazy"
-                                alt={movie.name}/>
+                                alt={movie.title}/>
                         ))}
-                        
+                                               
                     </div>
                     <div className="slider__arrow-right" >
                         <span className="arrow" onClick={()=>{document.getElementById(id).scrollLeft+=(window.innerWidth-80)}}>

@@ -1,4 +1,5 @@
 import React from 'react'
+import './Footer.css';
 import configDB from "../../../config/config.json";
 
 const Footer = () => {

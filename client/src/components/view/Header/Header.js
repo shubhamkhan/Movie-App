@@ -2,6 +2,7 @@ import logo from '../../../logo.svg';
 import React from 'react'
 import configDB from "../../../config/config.json";
 import { Link } from "react-router-dom";
+import './Header.css';
 
 const Header = () => {
     return (
@@ -33,22 +34,26 @@ const Header = () => {
                     </li>
                 </ul>
                 <ul className="nav mt-2">
+                    {/* <li className="nav-item mt-2">
+                        <p className="app-text-secondary">
+                            <button className="btn btn-sm btn-danger mx-1">LOG OUT</button>
+                        </p>
+                    </li> */}
+                    <Link to="/register">
                     <li className="nav-item mt-2">
                         <p className="app-text-secondary">
-                            <button className="btn btn-sm btn-danger mx-1">Sign Out</button>
+                            <button type="button" className="btn btn-sm btn-warning mx-1">JOIN NOW</button>
                         </p>
                     </li>
+                    </Link>
+                    <Link to="/login">
                     <li className="nav-item mt-2">
                         <p className="app-text-secondary">
-                            <button type="button" className="btn btn-sm btn-outline-light mx-1">Login</button>
+                            <button type="button" className="btn btn-sm btn-outline-light mx-1">SIGN IN</button>
                         </p>
                     </li>
-                    <li className="nav-item mt-2">
-                        <p className="app-text-secondary">
-                            <button type="button" className="btn btn-sm btn-warning mx-1">Sign Up</button>
-                        </p>
-                    </li>
-                    <li className="nav-item mt-2">
+                    </Link>
+                    {/* <li className="nav-item mt-2">
                         <p className="app-text-secondary">
                             <button type="button" className="btn btn-sm btn-light rounded-circle mx-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-sun" viewBox="0 0 16 16">
@@ -65,7 +70,7 @@ const Header = () => {
                                 </svg>
                             </button>
                         </p>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </nav>

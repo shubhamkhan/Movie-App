@@ -1,4 +1,5 @@
 import React from 'react';
+import './Home.css';
 import Banner from '../Banner/Banner';
 import Row from '../Row/Row';
 import api from '../../../service/api';

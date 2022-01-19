@@ -47,16 +47,16 @@ const Modal = ({backdrop_path, title, overview, name, release_date, first_air_da
                     </span>
                     {trailerUrl ? <Youtube videoId={trailerUrl} opts={opts}/> :                     
                         (<img
-                        className="modal__poster-img"
+                        className="modal__poster__img"
                         src={`${base_url}${backdrop_path}`}
                         alt="movie name"
                     />)}
 
                     <div className="modal__content">
-                        <p className="modal__details"><span className="modal__user-perc">{randomPorcentaje()}% for you</span> {release_date ? release_date : first_air_date}</p>
+                        <p className="modal__details"><span className="modal__user__perc">{randomPorcentaje()}% for you</span> {release_date ? release_date : first_air_date}</p>
                         <h2 className="modal__title">{title ? title : name}</h2>
                         <p className="modal__overview">{overview}</p>
-                        <p className="modal__overview">Vote Average: {vote_average}</p>
+                        <p className="modal__rate">IMDb: {vote_average}</p>
                     </div>
                 </div>
             </div>

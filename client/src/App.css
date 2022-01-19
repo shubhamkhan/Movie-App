@@ -67,10 +67,6 @@
   }
 }
 
-svg {
-  margin-bottom: 3px;
-}
-
 /* Custum Theme class [START] */
 .app-bg-primary {
   background-color: var(--bg-color-primary) !important;
