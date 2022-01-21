@@ -35,8 +35,9 @@
                  await User.create({
                      name: req.body.name,
                      user_type: req.body.user_type,
-                     phone: req.body.phone,
                      email: req.body.email,
+                     phone: req.body.phone,
+                     password: req.body.password,
                      age: req.body.age,
                      gender: req.body.gender,
                      image: uploadResponse.url,

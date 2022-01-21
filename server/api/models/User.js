@@ -17,27 +17,30 @@
       type: 'string',
       required: true
     },
+    email: {
+      type: 'string',
+      required: true
+    },
     phone: {
       type: 'number',
       required: true
     },
-    email: {
+    password: {
       type: 'string',
       required: true
     },
     age: {
       type: 'number',
-      required: true
+      required: false
     },
     gender: {
       type: 'string',
-      required: true
+      required: false
     },
     image:{
       type:"string",
-      required: true,
+      required: false
     },
-
   },
 
 };
