@@ -1,35 +1,77 @@
-import React from 'react'
+import React, { useState } from 'react';
+// import { useHistory } from 'react-router-dom';
 import './Register.css';
 
 const Register = () => {
+    // const history = useHistory();
+    const [user, setUser] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+        password2: ""
+    });
+
+    let key, value;
+
+    const handleInputs = (e) => {
+        console.log(e);
+        key = e.target.name;
+        value = e.target.value;
+
+        setUser({...user, [key]:value});
+    }
+
+    const sendData = async (e) => {
+        e.preventDefault();
+
+        const { name, email, phone, password, password2 } = user;
+        const res = await fetch("http://localhost:1337/user", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({name, email, phone, password, password2})
+        });
+
+        const data = await res.json();
+
+        if(data.status === 500 || !data) {
+            console.log("Invalid Registration");
+        } else {
+            console.log("Successfull Registration");
+
+            // history.push("/login");
+        }
+    }
     return (
-        <div className='container col-3 text-white'>
-            <div class="main_div">
-                <div class="box">
+        <div className='container col-3'>
+            <div className="main_div">
+                <div className="box">
                     <h2>Registration Form</h2>
                     <hr/>
-                    <form action="">
-                        <div class="input-box">
-                            <input type="text" name="name" id="name" autocomplete="off" required />
-                            <label for="name">Full Name</label>
+                    <form method='POST'>
+                        <div className="input-box">
+                            <input type="text" name="name" id="name" value={user.name} onChange={handleInputs} required />
+                            <label htmlFor="name">Full Name</label>
                         </div>
-                        <div class="input-box">
-                            <input type="email" name="email" id="email" autocomplete="off" required />
-                            <label for="email">Email</label>
+                        <div className="input-box">
+                            <input type="text" name="email" id="email" value={user.email} onChange={handleInputs} required />
+                            <label htmlFor="email">Email</label>
                         </div>
-                        <div class="input-box">
-                            <input type="text" name="phone" id="phone" autocomplete="off" required />
-                            <label for="phone">Mobile No</label>
+                        <div className="input-box">
+                            <input type="text" name="phone" id="phone" value={user.phone} onChange={handleInputs} required />
+                            <label htmlFor="phone">Mobile No</label>
                         </div>
-                        <div class="input-box">
-                            <input type="password" name="password" id="password" autocomplete="off" required />
-                            <label for="Password">Password</label>
+                        <div className="input-box">
+                            <input type="password" name="password" id="password" value={user.password} onChange={handleInputs} required />
+                            <label htmlFor="Password">Password</label>
                         </div>
-                        <div class="input-box">
-                            <input type="password" name="password2" id="password2" autocomplete="off" required />
-                            <label for="Password2">Confirm Password</label>
+                        <div className="input-box">
+                            <input type="password" name="password2" id="password2" value={user.password2} onChange={handleInputs} required />
+                            <label htmlFor="Password2">Confirm Password</label>
                         </div>
-                        <input type="submit" value="JOIN" />
+                        <input type="submit" value="JOIN" onClick={sendData}/>
                     </form>
                 </div>
             </div>

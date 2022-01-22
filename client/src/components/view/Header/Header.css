@@ -1,4 +1,7 @@
-svg {
+img {
     margin-bottom: 3px;
-  }
-  
+}
+
+svg {
+    margin-bottom: -3px;
+}

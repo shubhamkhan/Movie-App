@@ -1,5 +1,5 @@
 .row {
-  color: white;
+  color: var(--text-color-secondary);
 }
 
 h2 {

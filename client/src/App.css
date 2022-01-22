@@ -1,7 +1,18 @@
 :root {
+  --bg-color-primary: #161C20;
+  --text-color-primary: #FFFFFF;
+  --text-color-secondary: #181818;
+  --link-color: #4cdc39;
+
+  --border-color: #808080;
+  --icon-bg-color: #72797A;
+  --icon-bg-color-hover: #2B3C45;
+  --input-color: #B2B2B2;
+}
+
+[data-theme="dark"] {
   --bg-color-primary: #0d47a1;
-  --bg-color-secondary: #161C20;
-  --text-color-primary: #000000;
+  --text-color-primary: #181818;
   --text-color-secondary: #FFFFFF;
   --link-color: #3976DC;
 
@@ -10,6 +21,13 @@
   --icon-bg-color-hover: #2B3C45;
   --input-color: #B2B2B2;
 }
+
+/* --primary-color: #302AE6;
+--secondary-color: #536390;
+--font-color: #424242;
+--bg-color: #fff;
+--heading-color: #292922; */
+
 
 .bg-color {
   darkcolor: #161C20;
@@ -70,9 +88,6 @@
 /* Custum Theme class [START] */
 .app-bg-primary {
   background-color: var(--bg-color-primary) !important;
-}
-.app-bg-secondary {
-  background-color: var(--bg-color-secondary) !important;
 }
 
 .app-text-primary {

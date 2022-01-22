@@ -3,19 +3,19 @@ import './Login.css';
 
 const Login = () => {
     return (
-        <div className='container col-3 text-white'>
-            <div class="main_div">
-                <div class="box">
+        <div className='container col-3'>
+            <div className="main_div">
+                <div className="box">
                     <h1>Login Form</h1>
                     <hr/>
                     <form action="">
-                    <div class="input-box">
-                        <input type="email" name="email" id="name" autocomplete="off" required />
-                        <label for="email">Email</label>
+                    <div className="input-box">
+                        <input type="text" name="email" id="name" required />
+                        <label htmlFor="email">Email</label>
                     </div>
-                    <div class="input-box">
-                        <input type="password" name="password" id="name" autocomplete="off" required />
-                        <label for="Password">Password</label>
+                    <div className="input-box">
+                        <input type="password" name="password" id="name" required />
+                        <label htmlFor="Password">Password</label>
                     </div>
                     <input type="submit" value="LOGIN" />
                     </form>
