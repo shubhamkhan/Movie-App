@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Register.css';
 
 const Register = () => {
-    // const history = useHistory();
+    const navigate = useNavigate();
     const [user, setUser] = useState({
         name: "",
         email: "",
@@ -15,7 +15,6 @@ const Register = () => {
     let key, value;
 
     const handleInputs = (e) => {
-        console.log(e);
         key = e.target.name;
         value = e.target.value;
 
@@ -36,12 +35,11 @@ const Register = () => {
 
         const data = await res.json();
 
-        if(data.status === 500 || !data) {
+        if(data.status === 500 || data.status === 422  || !data) {
             console.log("Invalid Registration");
         } else {
             console.log("Successfull Registration");
-
-            // history.push("/login");
+            navigate("/login");
         }
     }
     return (
