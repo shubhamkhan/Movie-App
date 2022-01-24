@@ -21,6 +21,8 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
 
+  'POST /login': { action: 'Login/login' },
+
 
   /***************************************************************************
   *                                                                          *

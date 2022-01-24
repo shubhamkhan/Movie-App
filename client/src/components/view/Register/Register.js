@@ -4,6 +4,7 @@ import './Register.css';
 
 const Register = () => {
     const navigate = useNavigate();
+
     const [user, setUser] = useState({
         name: "",
         email: "",
@@ -25,7 +26,8 @@ const Register = () => {
         e.preventDefault();
 
         const { name, email, phone, password, password2 } = user;
-        const res = await fetch("http://localhost:1337/user", {
+
+        const res = await fetch("/user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -35,11 +37,11 @@ const Register = () => {
 
         const data = await res.json();
 
-        if(data.status === 500 || data.status === 422  || !data) {
-            console.log("Invalid Registration");
-        } else {
-            console.log("Successfull Registration");
+        if(data && data.status === 200) {
+            console.log("Successfull Registration" + data.status);
             navigate("/login");
+        } else {
+            console.log("Invalid Registration"); 
         }
     }
     return (
