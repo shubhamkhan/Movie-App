@@ -113,7 +113,3 @@ input:focus, button:focus {
 a:link, a:visited {
   text-decoration: none;
 }
-
-#search {
-  width: 470px;
-}
