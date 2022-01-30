@@ -8,7 +8,7 @@
  module.exports = {
  
      create: async(req,res)=>{
-         if(!req.body.email) {
+        if(!req.body.email) {
             return res.status(422).json('Filled the field properly !!!');
         }
 
@@ -19,7 +19,7 @@
         try {
             const userEmail=  await User.findOne({email: req.body.email})
             if(!userEmail) {
-                await User.create({
+                const userReg = await User.create({
                     name: req.body.name,
                     user_type: 'user',
                     email: req.body.email,
@@ -28,7 +28,10 @@
                     age: req.body.age,
                     gender: req.body.gender,
                 });
-                return res.status(200).json('Registration Successfull!!!');
+
+                if(userReg) {
+                    return res.status(200).json('Registration Successfull!!!');
+                }
             } else {
                 return res.status(500).json('Registration UnSuccessfull!!!');
             }

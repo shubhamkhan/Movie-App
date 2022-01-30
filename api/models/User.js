@@ -48,15 +48,21 @@
     return _.omit(this, ['password'])
   },
 
-  beforeCreate: function(user, cb) {
-    bcrypt.genSalt(10, function(err, salt) {
-      bcrypt.hash(user.password, salt, function(err, hash) {
+  beforeCreate: function(values, next) {
+    bcrypt.genSalt(10, (err, salt) => {
+
+      if (err) {
+        sails.log.error(err);
+        return next();
+      }
+
+      bcrypt.hash(values.password, salt, (err, hash) => {
           if (err) {
-            console.log(err);
-            cb(err);
+            sails.log.error(err);
+            next(err);
           } else {
-            user.password = hash;
-            cb();
+            values.password = hash; // Here is our encrypted password
+            return next();
           }
       });
     });
