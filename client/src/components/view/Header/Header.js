@@ -1,12 +1,49 @@
 import logo from '../../../logo.svg';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import configDB from '../../../config/config.json';
 import { Link } from 'react-router-dom';
 import light from '../../images/light.svg';
 import dark from '../../images/dark.svg';
 import './Header.css';
 
+import { UserContext } from '../../../App';
+
 const Header = () => {
+    const { state, dispatch } = useContext(UserContext);
+    const RenderMenu = () => {
+        if(state) {
+            return (
+                <>
+                <Link to="/logout">
+                <li className="nav-item mt-2">
+                    <p className="app-text-primary">
+                        <button className="btn btn-sm btn-danger mx-1">LOG OUT</button>
+                    </p>
+                </li>
+                </Link>
+                </>
+            )
+        } else {
+            return (
+                <>
+                <Link to="/register">
+                <li className="nav-item mt-2">
+                    <p className="app-text-primary">
+                        <button type="button" className="btn btn-sm btn-warning mx-1">JOIN NOW</button>
+                    </p>
+                </li>
+                </Link>
+                <Link to="/login">
+                <li className="nav-item mt-2">
+                    <p className="app-text-primary">
+                        <button type="button" className="btn btn-sm btn-outline-light mx-1">SIGN IN</button>
+                    </p>
+                </li>
+                </Link>
+                </>
+            )
+        }
+    }
     const [currentTheme, setCurrentTheme] = useState(dark);
 
     const toggleSwitch = () => {
@@ -29,10 +66,10 @@ const Header = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark app-bg-primary app-text-primary">
             <div className="container-fluid">
-            <a className="navbar-brand mb-2" href="#">
+            <span className="navbar-brand mb-2">
                 <img src={logo} alt='Brand Logo' width="32" height="32" className="d-inline-block align-text-top"/>
                 {configDB.APP_NAME}
-            </a>
+            </span>
             <button className="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
@@ -60,25 +97,7 @@ const Header = () => {
                     </div>
                 </form>
                 <ul className="nav mt-2">
-                    {/* <li className="nav-item mt-2">
-                        <p className="app-text-primary">
-                            <button className="btn btn-sm btn-danger mx-1">LOG OUT</button>
-                        </p>
-                    </li> */}
-                    <Link to="/register">
-                    <li className="nav-item mt-2">
-                        <p className="app-text-primary">
-                            <button type="button" className="btn btn-sm btn-warning mx-1">JOIN NOW</button>
-                        </p>
-                    </li>
-                    </Link>
-                    <Link to="/login">
-                    <li className="nav-item mt-2">
-                        <p className="app-text-primary">
-                            <button type="button" className="btn btn-sm btn-outline-light mx-1">SIGN IN</button>
-                        </p>
-                    </li>
-                    </Link>
+                    <RenderMenu />
                     <li className="nav-item mt-2">
                         <p className="app-text-primary">
                             <button type="button" onClick={toggleSwitch} className="btn btn-sm btn-light rounded-circle mx-1">

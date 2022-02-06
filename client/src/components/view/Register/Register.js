@@ -7,6 +7,7 @@ const Register = () => {
 
     const [user, setUser] = useState({
         name: "",
+        user_type: "user",
         email: "",
         phone: "",
         password: "",
@@ -25,20 +26,19 @@ const Register = () => {
     const sendData = async (e) => {
         e.preventDefault();
 
-        const { name, email, phone, password, password2 } = user;
+        const { name, user_type, email, phone, password, password2 } = user;
 
-        const res = await fetch("/user", {
+        const res = await fetch("/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({name, email, phone, password, password2})
+            body: JSON.stringify({name, user_type, email, phone, password, password2})
         });
 
         const data = await res.json();
-
-        if(data && data.status === 200) {
-            console.log("Successfull Registration" + data.status);
+        if(data && res.status === 201) {
+            console.log("Successfull Registration" + res.status);
             navigate("/login");
         } else {
             console.log("Invalid Registration"); 
@@ -52,23 +52,23 @@ const Register = () => {
                     <hr/>
                     <form method='POST'>
                         <div className="input-box">
-                            <input type="text" name="name" id="name" value={user.name} onChange={handleInputs} required />
+                            <input type="text" name="name" value={user.name} onChange={handleInputs} required />
                             <label htmlFor="name">Full Name</label>
                         </div>
                         <div className="input-box">
-                            <input type="text" name="email" id="email" value={user.email} onChange={handleInputs} required />
+                            <input type="text" name="email" value={user.email} onChange={handleInputs} required />
                             <label htmlFor="email">Email</label>
                         </div>
                         <div className="input-box">
-                            <input type="text" name="phone" id="phone" value={user.phone} onChange={handleInputs} required />
+                            <input type="text" name="phone" autoComplete="off" value={user.phone} onChange={handleInputs} required />
                             <label htmlFor="phone">Mobile No</label>
                         </div>
                         <div className="input-box">
-                            <input type="password" name="password" id="password" value={user.password} onChange={handleInputs} required />
+                            <input type="password" name="password" autoComplete="off" value={user.password} onChange={handleInputs} required />
                             <label htmlFor="Password">Password</label>
                         </div>
                         <div className="input-box">
-                            <input type="password" name="password2" id="password2" value={user.password2} onChange={handleInputs} required />
+                            <input type="password" name="password2" autoComplete="off" value={user.password2} onChange={handleInputs} required />
                             <label htmlFor="Password2">Confirm Password</label>
                         </div>
                         <input type="submit" value="JOIN" onClick={sendData}/>

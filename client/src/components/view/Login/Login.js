@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../../App';
 
 const Login = () => {
+
+    const {state, dispatch} = useContext(UserContext);
+
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -10,7 +14,7 @@ const Login = () => {
     const loginUser = async (e) => {
         e.preventDefault();
 
-        const res = await fetch("http://localhost:1337/login", {
+        const res = await fetch("/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -21,6 +25,7 @@ const Login = () => {
         const data = res.json();
 
         if(res.status === 200 && data) {
+            dispatch({type: 'USER', payload: true})
             console.log("Login Sucessful");
             navigate("/");
         } else {
@@ -37,7 +42,7 @@ const Login = () => {
                     <hr/>
                     <form method='POST'>
                     <div className="input-box">
-                        <input type="text" name="email" id="email"
+                        <input type="text" name="email" autoComplete="off"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
@@ -45,7 +50,7 @@ const Login = () => {
                         <label htmlFor="email">Email</label>
                     </div>
                     <div className="input-box">
-                        <input type="password" name="password" id="password"
+                        <input type="password" name="password" autoComplete="off"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required

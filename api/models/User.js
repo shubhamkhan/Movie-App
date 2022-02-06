@@ -1,71 +1,76 @@
 /**
  * User.js
- *
  * @description :: A model definition represents a database table/collection.
- * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
- var bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const mongooose = require('mongoose');
 
- module.exports = {
 
-  attributes: {
-
-    name: {
-      type: 'string',
-      required: true
-    },
-    user_type: {
-      type: 'string',
-      required: true
-    },
-    email: {
-      type: 'string',
-      required: true
-    },
-    phone: {
-      type: 'number',
-      required: true
-    },
-    password: {
-      type: 'string',
-      required: true
-    },
-    age: {
-      type: 'number',
-      required: false
-    },
-    gender: {
-      type: 'string',
-      required: false
-    },
-    image:{
-      type:"string",
-      required: false
-    },
+const userSchema = new mongooose.Schema({
+  
+  name: {
+    type: String,
+    required: true
   },
-
-  customToJSON: function() {
-    return _.omit(this, ['password'])
+  user_type: {
+    type: String,
+    required: true
   },
-
-  beforeCreate: function(values, next) {
-    bcrypt.genSalt(10, (err, salt) => {
-
-      if (err) {
-        sails.log.error(err);
-        return next();
+  email: {
+    type: String,
+    required: true
+  },
+  phone: {
+    type: Number,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  age: {
+    type: Number,
+    required: false
+  },
+  gender: {
+    type: String,
+    required: false
+  },
+  image:{
+    type: String,
+    required: false
+  },
+  tokens: [
+    {
+      token: {
+        type: String,
+        require: true
       }
+    }
+  ]
 
-      bcrypt.hash(values.password, salt, (err, hash) => {
-          if (err) {
-            sails.log.error(err);
-            next(err);
-          } else {
-            values.password = hash; // Here is our encrypted password
-            return next();
-          }
-      });
-    });
+})
+
+// Hashing passward
+userSchema.pre('save', async function(next){
+  if(this.isModified('password')) {
+    this.password = await bcrypt.hash(this.password, 12);
   }
+  next();
+})
 
-};
+// JWT token generating
+userSchema.methods.generateAuthToken = async function() {
+  try {
+    let token = jwt.sign({_id: this._id }, process.env.SECRET_KEY);
+    this.tokens = this.tokens.concat({ token: token });
+    await this.save();
+    return token;
+  } catch(error) {
+    console.log(error);
+  }
+}
+
+const User = mongooose.model('USER', userSchema);
+module.exports = User;
